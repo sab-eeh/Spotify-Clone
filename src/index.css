@@ -1,0 +1,16 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+body {
+  height: 100vh;
+  color: white;
+  background-color: black;
+  position: relative;
+}
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(80, 80, 80);
+}
