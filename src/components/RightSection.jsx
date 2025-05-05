@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import imageData from "./ImageData";
 import PlayButton from "./Icons/PlayButton.png";
 import MainFooter from "./Footer";
 
-function RightSection() {
-  const navigate = useNavigate();
+function RightSection({ setCurrentPage }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -77,7 +75,10 @@ function RightSection() {
               </h3>
               <div className="flex flex-col items-center justify-center gap-4 py-6">
                 <button
-                  onClick={() => navigate("/SignUp")}
+                  onClick={() => {
+                    setShowModal(false);
+                    setCurrentPage("signup");
+                  }}
                   className="bg-[#1ed760] hover:bg-[#4ac575] font-bold text-center py-2 px-8 rounded-full transition transform hover:scale-110"
                 >
                   Sign up free
@@ -90,9 +91,15 @@ function RightSection() {
                 <p className="text-sm font-bold text-gray-400 m-0">
                   Already have an account?
                 </p>
-                <a href="#" className="text-white font-bold text-sm hover:text-[#1ed760]">
+                <button
+                  onClick={() => {
+                    setShowModal(false);
+                    setCurrentPage("login");
+                  }}
+                  className="text-white font-bold text-sm hover:text-[#1ed760]"
+                >
                   Log in
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -1,10 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const SignUpBar = () => {
-  const navigate = useNavigate();
+const SignUpBar = ({ setCurrentPage }) => {
   const handleSignUp = () => {
-    navigate("/SignUp");
+    setCurrentPage("signup");
   };
 
   return (

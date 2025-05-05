@@ -1,5 +1,4 @@
 import React from "react";
-import LibraryIcon from "./Svgs/Library.svg";
 import PlusIcon from "./Svgs/Plus.svg";
 
 function LeftSection() {

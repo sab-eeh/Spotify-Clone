@@ -1,21 +1,32 @@
+import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/LoginPage";
 import SignUp from "./components/SignUpPage";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":
+        return <Home setCurrentPage={setCurrentPage} />;
+      case "login":
+        return <Login setCurrentPage={setCurrentPage} />;
+      case "signup":
+        return <SignUp setCurrentPage={setCurrentPage} />;
+      default:
+        return <Home setCurrentPage={setCurrentPage} />;
+    }
+  };
+
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-    </Router>
+    <div>
+      {/* Only show Navbar on Home page */}
+      {currentPage === "home" && <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />}
+      {renderPage()}
+    </div>
   );
 }
 
