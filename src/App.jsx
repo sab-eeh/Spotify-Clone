@@ -1,32 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/LoginPage";
 import SignUp from "./components/SignUpPage";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":
-        return <Home setCurrentPage={setCurrentPage} />;
-      case "login":
-        return <Login setCurrentPage={setCurrentPage} />;
-      case "signup":
-        return <SignUp setCurrentPage={setCurrentPage} />;
-      default:
-        return <Home setCurrentPage={setCurrentPage} />;
-    }
-  };
-
   return (
-    <div>
-      {/* Only show Navbar on Home page */}
-      {currentPage === "home" && <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />}
-      {renderPage()}
-    </div>
+    <Router>
+      <div>
+        {/* Navbar is always visible. If you want conditional visibility, use Layout.jsx */}
+        <Routes>
+          <Route path="/home" element={<><Navbar /><Home /></>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          {/* Redirect unknown paths to home */}
+          <Route path="*" element={<><Navbar /><Home /></>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
